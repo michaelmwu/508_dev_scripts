@@ -22,6 +22,7 @@ def main():
     parser.add_argument('--prefix', default=f'508.dev {getpass.getuser()} Invoice-', help='Filename prefix (default: 508.dev {username} Invoice-)')
     parser.add_argument('--customer', help='Stripe customer ID (if not provided, uses STRIPE_508_INVOICE_CUSTOMER env var or finds/creates 508.dev LLC customer)')
     parser.add_argument('--template', help='Invoice template ID (if not provided, uses STRIPE_508_INVOICE_TEMPLATE env var)')
+    parser.add_argument('--send-email', action='store_true', help='Send invoice email to customer (default: False)')
     parser.add_argument('--api_key', help='Stripe API key (or set STRIPE_API_KEY env var)')
 
     args = parser.parse_args()
@@ -92,6 +93,11 @@ def main():
         # Finalize the invoice
         print("Finalizing invoice...")
         invoice = stripe.Invoice.finalize_invoice(invoice.id)
+
+        # Send email if requested
+        if args.send_email:
+            print("Sending invoice email to customer...")
+            stripe.Invoice.send_invoice(invoice.id)
 
         # Wait for PDF to be ready and download it
         print("Waiting for PDF to be generated...")

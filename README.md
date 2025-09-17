@@ -34,4 +34,5 @@ uv run stripe_invoice_generator.py \
 - `--prefix`: Filename prefix (default: `508.dev {username} Invoice-`)
 - `--customer`: Stripe customer ID (Can set via env variable: `STRIPE_508_INVOICE_CUSTOMER`) - If not specified, will create/find a 508.dev LLC customer via email billing@508.dev
 - `--template`: Invoice template ID (Can set via env variable: `STRIPE_508_INVOICE_TEMPLATE`)
+- `--send-email`: Send invoice email to customer (default: False)
 - `--api_key`: Stripe API key (Can set via env variable: `STRIPE_API_KEY`)
