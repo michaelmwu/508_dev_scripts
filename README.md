@@ -23,6 +23,7 @@ uv run stripe_invoice_generator.py \
   --item "Work on Project August 2025" \
   --price 30 \
   --prefix "508.dev Michael Wu Invoice-" \
+  --template inrtem_XXXX \
   --dir "~/Downloads"
 ```
 
